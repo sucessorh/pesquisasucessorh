@@ -131,13 +131,13 @@
                 <img src="https://i.postimg.cc/hGJpz4hc/Design-sem-nome-1.png" alt="Logotipo Sucesso RH" class="h-20 w-auto mx-auto mb-8">
                 
                 <h1 class="text-4xl md:text-5xl font-bold text-white drop-shadow-lg">Pesquisa de Satisfação</h1>
-                <p class="text-lg md:text-xl text-white/80 mt-4 max-w-3xl mx-auto drop-shadow-md">A sua voz fortalece nosso compromisso com a ética e a transparência.</p>
+                <p class="text-lg md:text-xl text-white/80 mt-4 max-w-3xl mx-auto drop-shadow-md">Sua voz é fundamental para a nossa melhoria contínua.</p>
                 <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <button data-modal="geral-modal" class="open-modal-btn w-full sm:w-auto text-lg font-semibold bg-white text-azul-escuro px-8 py-3 rounded-full shadow-lg transition-transform hover:scale-105">
-                        Avaliação Geral
+                    <button data-modal="geral-servicos-modal" class="open-modal-btn w-full sm:w-auto text-lg font-semibold bg-white text-azul-escuro px-8 py-3 rounded-full shadow-lg transition-transform hover:scale-105">
+                        Avaliação Geral dos Serviços
                     </button>
-                    <button data-modal="servicos-rh-modal" class="open-modal-btn w-full sm:w-auto text-lg font-semibold bg-white text-azul-escuro px-8 py-3 rounded-full shadow-lg transition-transform hover:scale-105">
-                        Serviços Sucesso RH
+                    <button data-modal="atendimento-suporte-modal" class="open-modal-btn w-full sm:w-auto text-lg font-semibold bg-white text-azul-escuro px-8 py-3 rounded-full shadow-lg transition-transform hover:scale-105">
+                        Atendimento e Suporte
                     </button>
                 </div>
             </div>
@@ -176,64 +176,75 @@
     <!-- ====                       MODALS & TOASTS                     ==== -->
     <!-- =================================================================== -->
 
-    <!-- Form Modal 1: Avaliação Geral -->
-    <div id="geral-modal" class="hidden fixed inset-0 bg-black/60 flex items-center justify-center p-4 z-50">
-        <form id="geral-form-element" class="modal-popup bg-white p-8 md:p-10 rounded-2xl shadow-xl border border-gray-100 space-y-6 w-full max-w-3xl max-h-[90vh] overflow-y-auto custom-scrollbar">
+    <!-- Form Modal 1: Avaliação Geral dos Serviços do Sucesso RH -->
+    <div id="geral-servicos-modal" class="hidden fixed inset-0 bg-black/60 flex items-center justify-center p-4 z-50">
+        <form id="geral-servicos-form-element" class="modal-popup bg-white p-8 md:p-10 rounded-2xl shadow-xl border border-gray-100 space-y-6 w-full max-w-3xl max-h-[90vh] overflow-y-auto custom-scrollbar">
             <div class="text-center">
                 <h2 class="text-3xl font-bold text-azul-escuro">Pesquisa de Satisfação – Avaliação Geral</h2>
-                <p class="mt-2 text-gray-600 max-w-2xl mx-auto">Sua opinião é essencial para que possamos garantir um ambiente de trabalho ético, seguro e alinhado às boas práticas de compliance.</p>
+                <p class="mt-2 text-gray-600 max-w-2xl mx-auto">Sua opinião é essencial para que possamos garantir um atendimento ético, seguro e alinhado às boas práticas de compliance no Sucesso RH.</p>
             </div>
             
             <div class="space-y-5">
+                <!-- Question Template -->
                 <div class="p-4 border rounded-lg">
-                    <p class="font-semibold text-gray-700">1. Você considera que seu ambiente de trabalho é seguro? <span class="text-red-500">*</span></p>
+                    <p class="font-semibold text-gray-700">O Sucesso RH cumpre os prazos e acordos feitos com você? <span class="text-red-500">*</span></p>
                     <div class="mt-3 flex justify-around flex-wrap gap-2">
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="ambiente_seguro" value="1" required class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 1</label>
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="ambiente_seguro" value="2" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 2</label>
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="ambiente_seguro" value="3" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 3</label>
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="ambiente_seguro" value="4" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 4</label>
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="ambiente_seguro" value="5" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 5</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="cumpre_prazos" value="1" required class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 1</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="cumpre_prazos" value="2" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 2</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="cumpre_prazos" value="3" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 3</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="cumpre_prazos" value="4" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 4</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="cumpre_prazos" value="5" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 5</label>
                     </div>
                 </div>
                 <div class="p-4 border rounded-lg">
-                    <p class="font-semibold text-gray-700">2. Há respeito e cordialidade entre os colegas de trabalho? <span class="text-red-500">*</span></p>
+                    <p class="font-semibold text-gray-700">Você sente que o Sucesso RH atua com transparência nas informações que fornece? <span class="text-red-500">*</span></p>
                     <div class="mt-3 flex justify-around flex-wrap gap-2">
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="respeito_colegas" value="1" required class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 1</label>
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="respeito_colegas" value="2" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 2</label>
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="respeito_colegas" value="3" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 3</label>
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="respeito_colegas" value="4" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 4</label>
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="respeito_colegas" value="5" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 5</label>
-                    </div>
-                </div>
-                 <div class="p-4 border rounded-lg">
-                    <p class="font-semibold text-gray-700">3. As regras e procedimentos de segurança são respeitados? <span class="text-red-500">*</span></p>
-                    <div class="mt-3 flex justify-around flex-wrap gap-2">
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="regras_seguranca" value="1" required class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 1</label>
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="regras_seguranca" value="2" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 2</label>
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="regras_seguranca" value="3" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 3</label>
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="regras_seguranca" value="4" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 4</label>
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="regras_seguranca" value="5" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 5</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="transparencia" value="1" required class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 1</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="transparencia" value="2" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 2</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="transparencia" value="3" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 3</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="transparencia" value="4" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 4</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="transparencia" value="5" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 5</label>
                     </div>
                 </div>
                 <div class="p-4 border rounded-lg">
-                    <p class="font-semibold text-gray-700">4. Você já presenciou ou sofreu algum tipo de assédio ou discriminação no ambiente de trabalho? <span class="text-red-500">*</span></p>
+                    <p class="font-semibold text-gray-700">O atendimento recebido pelo Sucesso RH é cordial e respeitoso? <span class="text-red-500">*</span></p>
+                    <div class="mt-3 flex justify-around flex-wrap gap-2">
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="cordialidade" value="1" required class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 1</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="cordialidade" value="2" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 2</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="cordialidade" value="3" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 3</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="cordialidade" value="4" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 4</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="cordialidade" value="5" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 5</label>
+                    </div>
+                </div>
+                <div class="p-4 border rounded-lg">
+                    <p class="font-semibold text-gray-700">As orientações passadas pelo Sucesso RH são claras e fáceis de entender? <span class="text-red-500">*</span></p>
+                    <div class="mt-3 flex justify-around flex-wrap gap-2">
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="clareza" value="1" required class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 1</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="clareza" value="2" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 2</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="clareza" value="3" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 3</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="clareza" value="4" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 4</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="clareza" value="5" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 5</label>
+                    </div>
+                </div>
+                <div class="p-4 border rounded-lg">
+                    <p class="font-semibold text-gray-700">Você já utilizou o canal de denúncias ou atendimento especial do Sucesso RH? <span class="text-red-500">*</span></p>
                     <div class="mt-3 flex justify-center gap-6">
-                        <label class="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-100 cursor-pointer"><input type="radio" name="assedio" value="Sim" required class="h-4 w-4 text-azul-medio focus:ring-azul-medio mr-3"><span class="text-sm text-gray-700">Sim</span></label>
-                        <label class="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-100 cursor-pointer"><input type="radio" name="assedio" value="Não" class="h-4 w-4 text-azul-medio focus:ring-azul-medio mr-3"><span class="text-sm text-gray-700">Não</span></label>
+                        <label class="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-100 cursor-pointer"><input type="radio" name="usou_canal" value="Sim" required class="h-4 w-4 text-azul-medio focus:ring-azul-medio mr-3"><span class="text-sm text-gray-700">Sim</span></label>
+                        <label class="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-100 cursor-pointer"><input type="radio" name="usou_canal" value="Não" class="h-4 w-4 text-azul-medio focus:ring-azul-medio mr-3"><span class="text-sm text-gray-700">Não</span></label>
+                    </div>
+                </div>
+                <div id="efetividade-container" class="p-4 border rounded-lg hidden">
+                    <p class="font-semibold text-gray-700">Se sim, como avalia a efetividade da resposta obtida? (opcional)</p>
+                    <div class="mt-3 flex justify-around flex-wrap gap-2">
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="efetividade_canal" value="1" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 1</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="efetividade_canal" value="2" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 2</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="efetividade_canal" value="3" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 3</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="efetividade_canal" value="4" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 4</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="efetividade_canal" value="5" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 5</label>
                     </div>
                 </div>
                 <div class="p-4 border rounded-lg">
-                    <p class="font-semibold text-gray-700">5. O canal de denúncias da empresa é acessível e confiável? <span class="text-red-500">*</span></p>
-                     <div class="mt-3 flex justify-around flex-wrap gap-2">
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="canal_denuncias" value="1" required class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 1</label>
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="canal_denuncias" value="2" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 2</label>
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="canal_denuncias" value="3" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 3</label>
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="canal_denuncias" value="4" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 4</label>
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="canal_denuncias" value="5" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 5</label>
-                    </div>
-                </div>
-                <div class="p-4 border rounded-lg">
-                    <p class="font-semibold text-gray-700 text-center">6. Qual é o seu nível geral de satisfação com o ambiente de trabalho? <span class="text-red-500">*</span></p>
+                    <p class="font-semibold text-gray-700 text-center">Qual é o seu nível geral de satisfação com os serviços do Sucesso RH? <span class="text-red-500">*</span></p>
                     <div class="nps-scale mt-3">
                         <script>
                             for(let i = 0; i <= 10; i++) {
@@ -245,7 +256,7 @@
             </div>
 
             <div>
-                <label for="comentarios-geral" class="font-semibold text-gray-700">7. Comentários adicionais (opcional)</label>
+                <label for="comentarios-geral" class="font-semibold text-gray-700">Comentários adicionais (opcional)</label>
                 <textarea id="comentarios-geral" rows="3" class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-azul-medio focus:border-azul-medio"></textarea>
             </div>
             
@@ -259,79 +270,79 @@
         </form>
     </div>
 
-    <!-- Form Modal 2: Avaliação dos Serviços do Sucesso RH -->
-    <div id="servicos-rh-modal" class="hidden fixed inset-0 bg-black/60 flex items-center justify-center p-4 z-50">
-        <form id="servicos-rh-form-element" class="modal-popup bg-white p-8 md:p-10 rounded-2xl shadow-xl border border-gray-100 space-y-6 w-full max-w-3xl max-h-[90vh] overflow-y-auto custom-scrollbar">
+    <!-- Form Modal 2: Avaliação de Atendimento e Suporte do Sucesso RH -->
+    <div id="atendimento-suporte-modal" class="hidden fixed inset-0 bg-black/60 flex items-center justify-center p-4 z-50">
+        <form id="atendimento-suporte-form-element" class="modal-popup bg-white p-8 md:p-10 rounded-2xl shadow-xl border border-gray-100 space-y-6 w-full max-w-3xl max-h-[90vh] overflow-y-auto custom-scrollbar">
             <div class="text-center">
-                <h2 class="text-3xl font-bold text-azul-escuro">Pesquisa de Satisfação – Serviços Sucesso RH</h2>
+                <h2 class="text-3xl font-bold text-azul-escuro">Pesquisa de Satisfação – Atendimento e Suporte</h2>
                 <p class="mt-2 text-gray-600 max-w-2xl mx-auto">Avalie como o Sucesso RH está atuando para oferecer suporte, orientação e atendimento de qualidade a você.</p>
             </div>
             
             <div class="space-y-5">
                  <div class="p-4 border rounded-lg">
-                    <p class="font-semibold text-gray-700">1. Como você avalia a cordialidade no atendimento do Sucesso RH? <span class="text-red-500">*</span></p>
+                    <p class="font-semibold text-gray-700">Como você avalia a cordialidade no atendimento do Sucesso RH? <span class="text-red-500">*</span></p>
                     <div class="mt-3 flex justify-around flex-wrap gap-2">
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="cordialidade_rh" value="1" required class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 1</label>
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="cordialidade_rh" value="2" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 2</label>
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="cordialidade_rh" value="3" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 3</label>
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="cordialidade_rh" value="4" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 4</label>
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="cordialidade_rh" value="5" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 5</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="cordialidade_atendimento" value="1" required class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 1</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="cordialidade_atendimento" value="2" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 2</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="cordialidade_atendimento" value="3" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 3</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="cordialidade_atendimento" value="4" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 4</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="cordialidade_atendimento" value="5" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 5</label>
                     </div>
                 </div>
                 <div class="p-4 border rounded-lg">
-                    <p class="font-semibold text-gray-700">2. As solicitações feitas ao RH são respondidas com agilidade? <span class="text-red-500">*</span></p>
+                    <p class="font-semibold text-gray-700">As suas solicitações ao Sucesso RH são respondidas com agilidade? <span class="text-red-500">*</span></p>
                     <div class="mt-3 flex justify-around flex-wrap gap-2">
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="agilidade_rh" value="1" required class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 1</label>
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="agilidade_rh" value="2" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 2</label>
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="agilidade_rh" value="3" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 3</label>
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="agilidade_rh" value="4" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 4</label>
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="agilidade_rh" value="5" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 5</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="agilidade_resposta" value="1" required class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 1</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="agilidade_resposta" value="2" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 2</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="agilidade_resposta" value="3" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 3</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="agilidade_resposta" value="4" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 4</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="agilidade_resposta" value="5" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 5</label>
                     </div>
                 </div>
                 <div class="p-4 border rounded-lg">
-                    <p class="font-semibold text-gray-700">3. As informações fornecidas pelo RH são claras e objetivas? <span class="text-red-500">*</span></p>
+                    <p class="font-semibold text-gray-700">O Sucesso RH oferece soluções eficazes para suas necessidades? <span class="text-red-500">*</span></p>
                     <div class="mt-3 flex justify-around flex-wrap gap-2">
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="clareza_rh" value="1" required class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 1</label>
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="clareza_rh" value="2" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 2</label>
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="clareza_rh" value="3" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 3</label>
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="clareza_rh" value="4" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 4</label>
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="clareza_rh" value="5" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 5</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="eficacia_solucoes" value="1" required class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 1</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="eficacia_solucoes" value="2" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 2</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="eficacia_solucoes" value="3" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 3</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="eficacia_solucoes" value="4" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 4</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="eficacia_solucoes" value="5" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 5</label>
                     </div>
                 </div>
                 <div class="p-4 border rounded-lg">
-                    <p class="font-semibold text-gray-700">4. O Sucesso RH demonstra comprometimento com as normas e políticas da empresa? <span class="text-red-500">*</span></p>
+                    <p class="font-semibold text-gray-700">Você confia nas orientações e informações fornecidas pelo Sucesso RH? <span class="text-red-500">*</span></p>
                     <div class="mt-3 flex justify-around flex-wrap gap-2">
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="comprometimento_rh" value="1" required class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 1</label>
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="comprometimento_rh" value="2" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 2</label>
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="comprometimento_rh" value="3" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 3</label>
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="comprometimento_rh" value="4" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 4</label>
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="comprometimento_rh" value="5" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 5</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="confianca_orientacoes" value="1" required class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 1</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="confianca_orientacoes" value="2" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 2</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="confianca_orientacoes" value="3" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 3</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="confianca_orientacoes" value="4" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 4</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="confianca_orientacoes" value="5" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 5</label>
                     </div>
                 </div>
                 <div class="p-4 border rounded-lg">
-                    <p class="font-semibold text-gray-700">5. Você confia nas orientações passadas pelo RH? <span class="text-red-500">*</span></p>
+                    <p class="font-semibold text-gray-700">O RH demonstra comprometimento em resolver suas demandas de forma justa e ética? <span class="text-red-500">*</span></p>
                     <div class="mt-3 flex justify-around flex-wrap gap-2">
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="confianca_rh" value="1" required class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 1</label>
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="confianca_rh" value="2" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 2</label>
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="confianca_rh" value="3" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 3</label>
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="confianca_rh" value="4" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 4</label>
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="confianca_rh" value="5" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 5</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="comprometimento_resolucao" value="1" required class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 1</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="comprometimento_resolucao" value="2" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 2</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="comprometimento_resolucao" value="3" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 3</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="comprometimento_resolucao" value="4" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 4</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="comprometimento_resolucao" value="5" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 5</label>
                     </div>
                 </div>
                 <div class="p-4 border rounded-lg">
-                    <p class="font-semibold text-gray-700">6. O RH contribui para um ambiente de trabalho ético e respeitoso? <span class="text-red-500">*</span></p>
+                    <p class="font-semibold text-gray-700">Como você avalia a comunicação entre o Sucesso RH e você? <span class="text-red-500">*</span></p>
                     <div class="mt-3 flex justify-around flex-wrap gap-2">
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="ambiente_etico_rh" value="1" required class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 1</label>
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="ambiente_etico_rh" value="2" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 2</label>
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="ambiente_etico_rh" value="3" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 3</label>
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="ambiente_etico_rh" value="4" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 4</label>
-                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="ambiente_etico_rh" value="5" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 5</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="comunicacao" value="1" required class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 1</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="comunicacao" value="2" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 2</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="comunicacao" value="3" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 3</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="comunicacao" value="4" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 4</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="comunicacao" value="5" class="h-4 w-4 text-azul-medio focus:ring-azul-medio"> 5</label>
                     </div>
                 </div>
             </div>
 
             <div>
-                <label for="sugestoes-rh" class="font-semibold text-gray-700">7. Sugestões para melhoria dos serviços do RH (opcional)</label>
+                <label for="sugestoes-rh" class="font-semibold text-gray-700">Sugestões para melhoria dos serviços do Sucesso RH (opcional)</label>
                 <textarea id="sugestoes-rh" rows="3" class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-azul-medio focus:border-azul-medio"></textarea>
             </div>
             
@@ -381,7 +392,7 @@
     <!-- =================================================================== -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getFirestore, collection, addDoc, onSnapshot, serverTimestamp, query, where, getDocs, orderBy } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, onSnapshot, serverTimestamp, query, orderBy } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
         import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 
         // =================================================
@@ -405,8 +416,8 @@
         const thankYouModal = document.getElementById('thank-you-modal');
         const adminLoginModal = document.getElementById('admin-login-modal');
         const adminLoginForm = document.getElementById('admin-login-form');
-        const geralForm = document.getElementById('geral-form-element');
-        const servicosRhForm = document.getElementById('servicos-rh-form-element');
+        const geralServicosForm = document.getElementById('geral-servicos-form-element');
+        const atendimentoSuporteForm = document.getElementById('atendimento-suporte-form-element');
         const openAdminLoginBtn = document.getElementById('open-admin-login-btn');
         const openModalBtns = document.querySelectorAll('.open-modal-btn');
         const closeModalBtns = document.querySelectorAll('.close-modal-btn');
@@ -462,6 +473,23 @@
 
         openAdminLoginBtn.addEventListener('click', () => openModal(adminLoginModal));
         
+        // Conditional question logic
+        const usouCanalRadios = document.querySelectorAll('input[name="usou_canal"]');
+        const efetividadeContainer = document.getElementById('efetividade-container');
+        usouCanalRadios.forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                if (e.target.value === 'Sim') {
+                    efetividadeContainer.classList.remove('hidden');
+                } else {
+                    efetividadeContainer.classList.add('hidden');
+                    // Clear optional radio if "No" is selected
+                    const efetividadeRadios = document.querySelectorAll('input[name="efetividade_canal"]');
+                    efetividadeRadios.forEach(r => r.checked = false);
+                }
+            });
+        });
+
+
         // --- Form Submission ---
         async function handleFormSubmission(form, collectionName, dataExtractor, successMessage) {
             if (!isConfigured) {
@@ -478,6 +506,7 @@
                 await addDoc(collection(db, collectionName), formData);
                 closeModal(form.closest('.fixed'));
                 form.reset();
+                efetividadeContainer.classList.add('hidden'); // Reset conditional field
                 document.getElementById('thank-you-message').textContent = successMessage;
                 openModal(thankYouModal);
             } catch (error) {
@@ -489,30 +518,37 @@
             }
         }
 
-        geralForm.addEventListener('submit', (e) => {
+        geralServicosForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            handleFormSubmission(geralForm, 'pesquisa_geral_compliance', form => ({
-                createdAt: serverTimestamp(),
-                ambiente_seguro: parseInt(form.querySelector('input[name="ambiente_seguro"]:checked').value),
-                respeito_colegas: parseInt(form.querySelector('input[name="respeito_colegas"]:checked').value),
-                regras_seguranca: parseInt(form.querySelector('input[name="regras_seguranca"]:checked').value),
-                assedio: form.querySelector('input[name="assedio"]:checked').value,
-                canal_denuncias: parseInt(form.querySelector('input[name="canal_denuncias"]:checked').value),
-                nps_geral: parseInt(form.querySelector('input[name="nps_geral"]:checked').value),
-                comentarios: form.querySelector('#comentarios-geral').value.trim(),
-            }), 'Sua avaliação foi enviada com sucesso. Agradecemos sua contribuição!');
+            handleFormSubmission(geralServicosForm, 'pesquisa_geral_servicos', form => {
+                const data = {
+                    createdAt: serverTimestamp(),
+                    cumpre_prazos: parseInt(form.querySelector('input[name="cumpre_prazos"]:checked').value),
+                    transparencia: parseInt(form.querySelector('input[name="transparencia"]:checked').value),
+                    cordialidade: parseInt(form.querySelector('input[name="cordialidade"]:checked').value),
+                    clareza: parseInt(form.querySelector('input[name="clareza"]:checked').value),
+                    usou_canal: form.querySelector('input[name="usou_canal"]:checked').value,
+                    nps_geral: parseInt(form.querySelector('input[name="nps_geral"]:checked').value),
+                    comentarios: form.querySelector('#comentarios-geral').value.trim(),
+                };
+                const efetividade = form.querySelector('input[name="efetividade_canal"]:checked');
+                if (efetividade) {
+                    data.efetividade_canal = parseInt(efetividade.value);
+                }
+                return data;
+            }, 'Sua avaliação foi enviada com sucesso. Agradecemos sua contribuição!');
         });
 
-        servicosRhForm.addEventListener('submit', (e) => {
+        atendimentoSuporteForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            handleFormSubmission(servicosRhForm, 'pesquisa_servicos_rh', form => ({
+            handleFormSubmission(atendimentoSuporteForm, 'pesquisa_atendimento_suporte', form => ({
                 createdAt: serverTimestamp(),
-                cordialidade_rh: parseInt(form.querySelector('input[name="cordialidade_rh"]:checked').value),
-                agilidade_rh: parseInt(form.querySelector('input[name="agilidade_rh"]:checked').value),
-                clareza_rh: parseInt(form.querySelector('input[name="clareza_rh"]:checked').value),
-                comprometimento_rh: parseInt(form.querySelector('input[name="comprometimento_rh"]:checked').value),
-                confianca_rh: parseInt(form.querySelector('input[name="confianca_rh"]:checked').value),
-                ambiente_etico_rh: parseInt(form.querySelector('input[name="ambiente_etico_rh"]:checked').value),
+                cordialidade_atendimento: parseInt(form.querySelector('input[name="cordialidade_atendimento"]:checked').value),
+                agilidade_resposta: parseInt(form.querySelector('input[name="agilidade_resposta"]:checked').value),
+                eficacia_solucoes: parseInt(form.querySelector('input[name="eficacia_solucoes"]:checked').value),
+                confianca_orientacoes: parseInt(form.querySelector('input[name="confianca_orientacoes"]:checked').value),
+                comprometimento_resolucao: parseInt(form.querySelector('input[name="comprometimento_resolucao"]:checked').value),
+                comunicacao: parseInt(form.querySelector('input[name="comunicacao"]:checked').value),
                 sugestoes: form.querySelector('#sugestoes-rh').value.trim(),
             }), 'Sua avaliação foi enviada com sucesso. Obrigado por nos ajudar a melhorar!');
         });
@@ -520,16 +556,16 @@
 
         // --- Admin Logic ---
         let allGeralData = [];
-        let allServicosRhData = [];
+        let allAtendimentoData = [];
         let filteredGeralData = [];
-        let filteredServicosRhData = [];
+        let filteredAtendimentoData = [];
         let chartInstances = {};
 
         function renderAdminDashboard() {
             adminDashboardContainer.innerHTML = `
                 <div class="max-w-7xl mx-auto">
                     <div class="flex flex-wrap justify-between items-center mb-6 gap-4">
-                        <h1 class="text-3xl font-bold text-slate-800">Dashboard de Compliance</h1>
+                        <h1 class="text-3xl font-bold text-slate-800">Dashboard de Satisfação</h1>
                         <button id="logout-btn" class="font-semibold text-azul-medio hover:text-azul-escuro transition-colors">Sair</button>
                     </div>
 
@@ -547,13 +583,11 @@
                         <button id="clear-filter-btn" class="bg-gray-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-gray-600 transition">Limpar Filtro</button>
                     </div>
 
-                    <!-- Section: Avaliação Geral -->
+                    <!-- Section: Avaliação Geral dos Serviços -->
                     <section class="mb-8 bg-white p-6 rounded-xl shadow-sm">
                         <div class="flex justify-between items-center mb-4 border-b-2 border-azul-medio pb-2">
-                            <h2 class="text-2xl font-bold text-slate-700">Avaliação Geral do Ambiente</h2>
-                            <div class="flex gap-2">
-                                <button id="export-geral-csv-btn" class="bg-gray-200 text-sm text-gray-700 px-3 py-1 rounded-md hover:bg-gray-300">Exportar CSV</button>
-                            </div>
+                            <h2 class="text-2xl font-bold text-slate-700">Avaliação Geral dos Serviços</h2>
+                            <button id="export-geral-csv-btn" class="bg-gray-200 text-sm text-gray-700 px-3 py-1 rounded-md hover:bg-gray-300">Exportar CSV</button>
                         </div>
                         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
                             <div class="lg:col-span-2">
@@ -561,11 +595,11 @@
                                 <div class="h-80"><canvas id="geral-avg-chart"></canvas></div>
                             </div>
                             <div>
-                                <h3 class="font-bold text-lg text-slate-700 mb-4">Casos de Assédio/Discriminação</h3>
-                                <div class="h-80"><canvas id="geral-assedio-chart"></canvas></div>
+                                <h3 class="font-bold text-lg text-slate-700 mb-4">Uso do Canal de Denúncias</h3>
+                                <div class="h-80"><canvas id="geral-canal-chart"></canvas></div>
                             </div>
                             <div class="lg:col-span-3">
-                                <h3 class="font-bold text-lg text-slate-700 mb-4">NPS - Satisfação Geral com Ambiente</h3>
+                                <h3 class="font-bold text-lg text-slate-700 mb-4">NPS - Satisfação Geral com Serviços</h3>
                                 <div id="geral-nps-score" class="text-5xl font-bold text-center text-azul-escuro my-4"></div>
                                 <div class="h-60"><canvas id="geral-nps-chart"></canvas></div>
                             </div>
@@ -576,23 +610,21 @@
                         </div>
                     </section>
 
-                    <!-- Section: Avaliação Serviços RH -->
+                    <!-- Section: Avaliação de Atendimento e Suporte -->
                     <section class="bg-white p-6 rounded-xl shadow-sm">
                          <div class="flex justify-between items-center mb-4 border-b-2 border-azul-escuro pb-2">
-                            <h2 class="text-2xl font-bold text-slate-700">Avaliação dos Serviços do Sucesso RH</h2>
-                             <div class="flex gap-2">
-                                <button id="export-servicos-csv-btn" class="bg-gray-200 text-sm text-gray-700 px-3 py-1 rounded-md hover:bg-gray-300">Exportar CSV</button>
-                            </div>
+                            <h2 class="text-2xl font-bold text-slate-700">Avaliação de Atendimento e Suporte</h2>
+                            <button id="export-atendimento-csv-btn" class="bg-gray-200 text-sm text-gray-700 px-3 py-1 rounded-md hover:bg-gray-300">Exportar CSV</button>
                         </div>
                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
                             <div class="lg:col-span-2">
-                                <h3 class="font-bold text-lg text-slate-700 mb-4">Média de Avaliação dos Serviços RH (1-5)</h3>
-                                <div class="h-96"><canvas id="servicos-rh-chart"></canvas></div>
+                                <h3 class="font-bold text-lg text-slate-700 mb-4">Média de Avaliação de Atendimento (1-5)</h3>
+                                <div class="h-96"><canvas id="atendimento-chart"></canvas></div>
                             </div>
                         </div>
                          <div>
                             <h3 class="font-bold text-lg text-slate-700 mb-4">Sugestões para Melhoria</h3>
-                            <div id="servicos-rh-sugestoes-list" class="h-72 overflow-y-auto custom-scrollbar space-y-3 pr-2 border p-2 rounded-md"></div>
+                            <div id="atendimento-sugestoes-list" class="h-72 overflow-y-auto custom-scrollbar space-y-3 pr-2 border p-2 rounded-md"></div>
                         </div>
                     </section>
                 </div>
@@ -611,9 +643,8 @@
             document.getElementById('filter-btn').addEventListener('click', applyFilters);
             document.getElementById('clear-filter-btn').addEventListener('click', clearFilters);
             
-            // Export buttons
             document.getElementById('export-geral-csv-btn').addEventListener('click', () => exportGeralToCSV(filteredGeralData));
-            document.getElementById('export-servicos-csv-btn').addEventListener('click', () => exportServicosToCSV(filteredServicosRhData));
+            document.getElementById('export-atendimento-csv-btn').addEventListener('click', () => exportAtendimentoToCSV(filteredAtendimentoData));
         }
 
         adminLoginForm.addEventListener('submit', (e) => {
@@ -636,12 +667,12 @@
         function initializeDashboard() {
             if (!isConfigured) return;
             
-            onSnapshot(query(collection(db, "pesquisa_geral_compliance"), orderBy("createdAt", "desc")), (snapshot) => {
+            onSnapshot(query(collection(db, "pesquisa_geral_servicos"), orderBy("createdAt", "desc")), (snapshot) => {
                 allGeralData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
                 applyFilters();
             });
-            onSnapshot(query(collection(db, "pesquisa_servicos_rh"), orderBy("createdAt", "desc")), (snapshot) => {
-                allServicosRhData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            onSnapshot(query(collection(db, "pesquisa_atendimento_suporte"), orderBy("createdAt", "desc")), (snapshot) => {
+                allAtendimentoData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
                 applyFilters();
             });
         }
@@ -664,7 +695,7 @@
                 return true;
             });
 
-            filteredServicosRhData = allServicosRhData.filter(item => {
+            filteredAtendimentoData = allAtendimentoData.filter(item => {
                 const itemDate = item.createdAt?.toDate();
                 if (!itemDate) return false;
                 if (start && itemDate < start) return false;
@@ -687,12 +718,12 @@
             Object.values(chartInstances).forEach(chart => chart.destroy());
 
             renderGeralAvgChart(filteredGeralData);
-            renderGeralAssedioChart(filteredGeralData);
+            renderGeralCanalChart(filteredGeralData);
             renderGeralNpsChart(filteredGeralData);
             renderCommentsList(filteredGeralData, 'geral-comments-list', 'comentarios');
 
-            renderServicosRhChart(filteredServicosRhData);
-            renderCommentsList(filteredServicosRhData, 'servicos-rh-sugestoes-list', 'sugestoes');
+            renderAtendimentoChart(filteredAtendimentoData);
+            renderCommentsList(filteredAtendimentoData, 'atendimento-sugestoes-list', 'sugestoes');
         }
 
         const createChart = (ctx, type, data, options) => new Chart(ctx, { type, data, options });
@@ -707,10 +738,10 @@
             const ctx = document.getElementById('geral-avg-chart')?.getContext('2d');
             if(!ctx) return;
             const averages = {
-                'Ambiente Seguro': calculateAverage(data, 'ambiente_seguro'),
-                'Respeito Colegas': calculateAverage(data, 'respeito_colegas'),
-                'Regras Segurança': calculateAverage(data, 'regras_seguranca'),
-                'Canal Denúncias': calculateAverage(data, 'canal_denuncias'),
+                'Prazos e Acordos': calculateAverage(data, 'cumpre_prazos'),
+                'Transparência': calculateAverage(data, 'transparencia'),
+                'Cordialidade': calculateAverage(data, 'cordialidade'),
+                'Clareza': calculateAverage(data, 'clareza'),
             };
             const chartData = {
                 labels: Object.keys(averages),
@@ -724,21 +755,21 @@
             chartInstances.geralAvg = createChart(ctx, 'bar', chartData, { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, max: 5 } } });
         }
 
-        function renderGeralAssedioChart(data) {
-            const ctx = document.getElementById('geral-assedio-chart')?.getContext('2d');
+        function renderGeralCanalChart(data) {
+            const ctx = document.getElementById('geral-canal-chart')?.getContext('2d');
             if(!ctx) return;
             const counts = data.reduce((acc, item) => {
-                acc[item.assedio] = (acc[item.assedio] || 0) + 1;
+                acc[item.usou_canal] = (acc[item.usou_canal] || 0) + 1;
                 return acc;
             }, { 'Sim': 0, 'Não': 0 });
             const chartData = {
                 labels: ['Não', 'Sim'],
                 datasets: [{
                     data: [counts['Não'], counts['Sim']],
-                    backgroundColor: ['#2196F3', '#F44336'],
+                    backgroundColor: ['#90CAF9', '#1976D2'],
                 }]
             };
-            chartInstances.geralAssedio = createChart(ctx, 'pie', chartData, { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } });
+            chartInstances.geralCanal = createChart(ctx, 'pie', chartData, { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } });
         }
 
         function renderGeralNpsChart(data) {
@@ -770,16 +801,16 @@
             chartInstances.geralNps = createChart(ctx, 'bar', chartData, { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } });
         }
         
-        function renderServicosRhChart(data) {
-            const ctx = document.getElementById('servicos-rh-chart')?.getContext('2d');
+        function renderAtendimentoChart(data) {
+            const ctx = document.getElementById('atendimento-chart')?.getContext('2d');
             if(!ctx) return;
             const averages = {
-                'Cordialidade': calculateAverage(data, 'cordialidade_rh'),
-                'Agilidade': calculateAverage(data, 'agilidade_rh'),
-                'Clareza': calculateAverage(data, 'clareza_rh'),
-                'Comprometimento': calculateAverage(data, 'comprometimento_rh'),
-                'Confiança': calculateAverage(data, 'confianca_rh'),
-                'Ambiente Ético': calculateAverage(data, 'ambiente_etico_rh'),
+                'Cordialidade': calculateAverage(data, 'cordialidade_atendimento'),
+                'Agilidade': calculateAverage(data, 'agilidade_resposta'),
+                'Eficácia': calculateAverage(data, 'eficacia_solucoes'),
+                'Confiança': calculateAverage(data, 'confianca_orientacoes'),
+                'Comprometimento': calculateAverage(data, 'comprometimento_resolucao'),
+                'Comunicação': calculateAverage(data, 'comunicacao'),
             };
              const chartData = {
                 labels: Object.keys(averages),
@@ -796,7 +827,7 @@
                     fill: true
                 }]
             };
-            chartInstances.servicosRh = createChart(ctx, 'radar', chartData, { responsive: true, maintainAspectRatio: false, scales: { r: { beginAtZero: true, max: 5, pointLabels: { font: { size: 14 } } } } });
+            chartInstances.atendimento = createChart(ctx, 'radar', chartData, { responsive: true, maintainAspectRatio: false, scales: { r: { beginAtZero: true, max: 5, pointLabels: { font: { size: 14 } } } } });
         }
 
         function renderCommentsList(data, elementId, key) {
@@ -820,35 +851,27 @@
 
         // --- Export Functions ---
         function exportGeralToCSV(data) {
-            const headers = "Data,Ambiente Seguro,Respeito Colegas,Regras Segurança,Assédio,Canal Denúncias,NPS Geral,Comentários";
+            const headers = "Data,Cumpriu Prazos,Transparência,Cordialidade,Clareza,Usou Canal,Efetividade Canal,NPS,Comentários";
             const rows = data.map(s => [
                 s.createdAt ? s.createdAt.toDate().toLocaleString('pt-BR') : '',
-                s.ambiente_seguro,
-                s.respeito_colegas,
-                s.regras_seguranca,
-                s.assedio,
-                s.canal_denuncias,
-                s.nps_geral,
+                s.cumpre_prazos, s.transparencia, s.cordialidade, s.clareza,
+                s.usou_canal, s.efetividade_canal || 'N/A', s.nps_geral,
                 `"${(s.comentarios || '').replace(/"/g, '""')}"`
             ].join(','));
             
-            downloadFile(headers + "\n" + rows.join("\n"), "relatorio_geral.csv", "text/csv;charset=utf-8;");
+            downloadFile(headers + "\n" + rows.join("\n"), "relatorio_geral_servicos.csv", "text/csv;charset=utf-8;");
         }
 
-        function exportServicosToCSV(data) {
-            const headers = "Data,Cordialidade,Agilidade,Clareza,Comprometimento,Confiança,Ambiente Ético,Sugestões";
+        function exportAtendimentoToCSV(data) {
+            const headers = "Data,Cordialidade,Agilidade,Eficácia,Confiança,Comprometimento,Comunicação,Sugestões";
             const rows = data.map(s => [
                 s.createdAt ? s.createdAt.toDate().toLocaleString('pt-BR') : '',
-                s.cordialidade_rh,
-                s.agilidade_rh,
-                s.clareza_rh,
-                s.comprometimento_rh,
-                s.confianca_rh,
-                s.ambiente_etico_rh,
+                s.cordialidade_atendimento, s.agilidade_resposta, s.eficacia_solucoes,
+                s.confianca_orientacoes, s.comprometimento_resolucao, s.comunicacao,
                 `"${(s.sugestoes || '').replace(/"/g, '""')}"`
             ].join(','));
             
-            downloadFile(headers + "\n" + rows.join("\n"), "relatorio_servicos_rh.csv", "text/csv;charset=utf-8;");
+            downloadFile(headers + "\n" + rows.join("\n"), "relatorio_atendimento_suporte.csv", "text/csv;charset=utf-8;");
         }
 
         function downloadFile(content, fileName, mimeType) {
