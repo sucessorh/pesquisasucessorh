@@ -18,6 +18,10 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
 
+    <!-- jsPDF for PDF Export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf-autotable.min.js"></script>
+
     <!-- Custom Styles & Theme -->
     <style>
         :root {
@@ -381,7 +385,7 @@
     <!-- =================================================================== -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getFirestore, collection, addDoc, onSnapshot, serverTimestamp, query, where, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, onSnapshot, serverTimestamp, query, where, getDocs, orderBy } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
         import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 
         // =================================================
@@ -521,6 +525,8 @@
         // --- Admin Logic ---
         let allGeralData = [];
         let allServicosRhData = [];
+        let filteredGeralData = [];
+        let filteredServicosRhData = [];
         let chartInstances = {};
 
         function renderAdminDashboard() {
@@ -531,53 +537,91 @@
                         <button id="logout-btn" class="font-semibold text-azul-medio hover:text-azul-escuro transition-colors">Sair</button>
                     </div>
 
+                    <!-- Filters -->
+                    <div class="bg-white p-4 rounded-xl shadow-sm mb-6 flex flex-wrap gap-4 items-end">
+                        <div>
+                            <label for="date-start" class="text-sm font-medium text-gray-600">Data Início</label>
+                            <input type="date" id="date-start" class="mt-1 block w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-azul-medio">
+                        </div>
+                        <div>
+                            <label for="date-end" class="text-sm font-medium text-gray-600">Data Fim</label>
+                            <input type="date" id="date-end" class="mt-1 block w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-azul-medio">
+                        </div>
+                        <button id="filter-btn" class="bg-azul-medio text-white px-4 py-2 rounded-lg font-semibold hover:bg-azul-escuro transition">Filtrar</button>
+                        <button id="clear-filter-btn" class="bg-gray-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-gray-600 transition">Limpar Filtro</button>
+                    </div>
+
                     <!-- Section: Avaliação Geral -->
-                    <section class="mb-8">
-                        <h2 class="text-2xl font-bold text-slate-700 mb-4 border-b-2 border-azul-medio pb-2">Avaliação Geral do Ambiente</h2>
+                    <section class="mb-8 bg-white p-6 rounded-xl shadow-sm">
+                        <div class="flex justify-between items-center mb-4 border-b-2 border-azul-medio pb-2">
+                            <h2 class="text-2xl font-bold text-slate-700">Avaliação Geral do Ambiente</h2>
+                            <div class="flex gap-2">
+                                <button id="export-geral-csv-btn" class="bg-gray-200 text-sm text-gray-700 px-3 py-1 rounded-md hover:bg-gray-300">Exportar CSV</button>
+                                <button id="export-geral-pdf-btn" class="bg-gray-200 text-sm text-gray-700 px-3 py-1 rounded-md hover:bg-gray-300">Exportar PDF</button>
+                            </div>
+                        </div>
                         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
-                            <div class="bg-white p-6 rounded-xl shadow-sm lg:col-span-2">
+                            <div class="lg:col-span-2">
                                 <h3 class="font-bold text-lg text-slate-700 mb-4">Média das Avaliações (1-5)</h3>
                                 <div class="h-80"><canvas id="geral-avg-chart"></canvas></div>
                             </div>
-                            <div class="bg-white p-6 rounded-xl shadow-sm">
+                            <div>
                                 <h3 class="font-bold text-lg text-slate-700 mb-4">Casos de Assédio/Discriminação</h3>
                                 <div class="h-80"><canvas id="geral-assedio-chart"></canvas></div>
                             </div>
-                            <div class="bg-white p-6 rounded-xl shadow-sm lg:col-span-3">
+                            <div class="lg:col-span-3">
                                 <h3 class="font-bold text-lg text-slate-700 mb-4">NPS - Satisfação Geral com Ambiente</h3>
                                 <div id="geral-nps-score" class="text-5xl font-bold text-center text-azul-escuro my-4"></div>
                                 <div class="h-60"><canvas id="geral-nps-chart"></canvas></div>
                             </div>
                         </div>
-                        <div class="bg-white p-6 rounded-xl shadow-sm">
+                        <div>
                             <h3 class="font-bold text-lg text-slate-700 mb-4">Comentários Adicionais</h3>
-                            <div id="geral-comments-list" class="h-72 overflow-y-auto custom-scrollbar space-y-3 pr-2"></div>
+                            <div id="geral-comments-list" class="h-72 overflow-y-auto custom-scrollbar space-y-3 pr-2 border p-2 rounded-md"></div>
                         </div>
                     </section>
 
                     <!-- Section: Avaliação Serviços RH -->
-                    <section>
-                        <h2 class="text-2xl font-bold text-slate-700 mb-4 border-b-2 border-azul-escuro pb-2">Avaliação dos Serviços do Sucesso RH</h2>
+                    <section class="bg-white p-6 rounded-xl shadow-sm">
+                         <div class="flex justify-between items-center mb-4 border-b-2 border-azul-escuro pb-2">
+                            <h2 class="text-2xl font-bold text-slate-700">Avaliação dos Serviços do Sucesso RH</h2>
+                             <div class="flex gap-2">
+                                <button id="export-servicos-csv-btn" class="bg-gray-200 text-sm text-gray-700 px-3 py-1 rounded-md hover:bg-gray-300">Exportar CSV</button>
+                                <button id="export-servicos-pdf-btn" class="bg-gray-200 text-sm text-gray-700 px-3 py-1 rounded-md hover:bg-gray-300">Exportar PDF</button>
+                            </div>
+                        </div>
                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-                            <div class="bg-white p-6 rounded-xl shadow-sm lg:col-span-2">
+                            <div class="lg:col-span-2">
                                 <h3 class="font-bold text-lg text-slate-700 mb-4">Média de Avaliação dos Serviços RH (1-5)</h3>
                                 <div class="h-96"><canvas id="servicos-rh-chart"></canvas></div>
                             </div>
                         </div>
-                         <div class="bg-white p-6 rounded-xl shadow-sm">
+                         <div>
                             <h3 class="font-bold text-lg text-slate-700 mb-4">Sugestões para Melhoria</h3>
-                            <div id="servicos-rh-sugestoes-list" class="h-72 overflow-y-auto custom-scrollbar space-y-3 pr-2"></div>
+                            <div id="servicos-rh-sugestoes-list" class="h-72 overflow-y-auto custom-scrollbar space-y-3 pr-2 border p-2 rounded-md"></div>
                         </div>
                     </section>
                 </div>
             `;
-            // Re-add logout listener
+            addAdminEventListeners();
+        }
+
+        function addAdminEventListeners() {
             document.getElementById('logout-btn').addEventListener('click', () => {
                 publicView.classList.remove('hidden');
                 adminDashboardContainer.classList.add('hidden');
-                adminDashboardContainer.innerHTML = ''; // Clear dashboard on logout
+                adminDashboardContainer.innerHTML = '';
                 Object.values(chartInstances).forEach(chart => chart.destroy());
             });
+
+            document.getElementById('filter-btn').addEventListener('click', applyFilters);
+            document.getElementById('clear-filter-btn').addEventListener('click', clearFilters);
+            
+            // Export buttons
+            document.getElementById('export-geral-csv-btn').addEventListener('click', () => exportGeralToCSV(filteredGeralData));
+            document.getElementById('export-geral-pdf-btn').addEventListener('click', () => exportGeralToPDF(filteredGeralData));
+            document.getElementById('export-servicos-csv-btn').addEventListener('click', () => exportServicosToCSV(filteredServicosRhData));
+            document.getElementById('export-servicos-pdf-btn').addEventListener('click', () => exportServicosToPDF(filteredServicosRhData));
         }
 
         adminLoginForm.addEventListener('submit', (e) => {
@@ -600,14 +644,49 @@
         function initializeDashboard() {
             if (!isConfigured) return;
             
-            onSnapshot(collection(db, "pesquisa_geral_compliance"), (snapshot) => {
+            onSnapshot(query(collection(db, "pesquisa_geral_compliance"), orderBy("createdAt", "desc")), (snapshot) => {
                 allGeralData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-                updateDashboard();
+                applyFilters();
             });
-            onSnapshot(collection(db, "pesquisa_servicos_rh"), (snapshot) => {
+            onSnapshot(query(collection(db, "pesquisa_servicos_rh"), orderBy("createdAt", "desc")), (snapshot) => {
                 allServicosRhData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-                updateDashboard();
+                applyFilters();
             });
+        }
+
+        function applyFilters() {
+            const startDate = document.getElementById('date-start').value;
+            const endDate = document.getElementById('date-end').value;
+
+            const start = startDate ? new Date(startDate) : null;
+            if(start) start.setHours(0, 0, 0, 0);
+
+            const end = endDate ? new Date(endDate) : null;
+            if(end) end.setHours(23, 59, 59, 999);
+
+            filteredGeralData = allGeralData.filter(item => {
+                const itemDate = item.createdAt?.toDate();
+                if (!itemDate) return false;
+                if (start && itemDate < start) return false;
+                if (end && itemDate > end) return false;
+                return true;
+            });
+
+            filteredServicosRhData = allServicosRhData.filter(item => {
+                const itemDate = item.createdAt?.toDate();
+                if (!itemDate) return false;
+                if (start && itemDate < start) return false;
+                if (end && itemDate > end) return false;
+                return true;
+            });
+            
+            updateDashboard();
+        }
+
+        function clearFilters() {
+            document.getElementById('date-start').value = '';
+            document.getElementById('date-end').value = '';
+            applyFilters();
         }
 
         function updateDashboard() {
@@ -615,13 +694,13 @@
 
             Object.values(chartInstances).forEach(chart => chart.destroy());
 
-            renderGeralAvgChart(allGeralData);
-            renderGeralAssedioChart(allGeralData);
-            renderGeralNpsChart(allGeralData);
-            renderCommentsList(allGeralData, 'geral-comments-list', 'comentarios');
+            renderGeralAvgChart(filteredGeralData);
+            renderGeralAssedioChart(filteredGeralData);
+            renderGeralNpsChart(filteredGeralData);
+            renderCommentsList(filteredGeralData, 'geral-comments-list', 'comentarios');
 
-            renderServicosRhChart(allServicosRhData);
-            renderCommentsList(allServicosRhData, 'servicos-rh-sugestoes-list', 'sugestoes');
+            renderServicosRhChart(filteredServicosRhData);
+            renderCommentsList(filteredServicosRhData, 'servicos-rh-sugestoes-list', 'sugestoes');
         }
 
         const createChart = (ctx, type, data, options) => new Chart(ctx, { type, data, options });
@@ -737,7 +816,6 @@
                 return;
             }
             list.innerHTML = filteredData
-                .sort((a,b) => b.createdAt?.toMillis() - a.createdAt?.toMillis())
                 .map(item => `
                 <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
                     <p class="text-gray-800">"${item[key]}"</p>
@@ -746,6 +824,85 @@
                     </div>
                 </div>
             `).join('');
+        }
+
+        // --- Export Functions ---
+        function exportGeralToCSV(data) {
+            const headers = "Data,Ambiente Seguro,Respeito Colegas,Regras Segurança,Assédio,Canal Denúncias,NPS Geral,Comentários";
+            const rows = data.map(s => [
+                s.createdAt ? s.createdAt.toDate().toLocaleString('pt-BR') : '',
+                s.ambiente_seguro,
+                s.respeito_colegas,
+                s.regras_seguranca,
+                s.assedio,
+                s.canal_denuncias,
+                s.nps_geral,
+                `"${(s.comentarios || '').replace(/"/g, '""')}"`
+            ].join(','));
+            
+            downloadFile(headers + "\n" + rows.join("\n"), "relatorio_geral.csv", "text/csv;charset=utf-8;");
+        }
+
+        function exportServicosToCSV(data) {
+            const headers = "Data,Cordialidade,Agilidade,Clareza,Comprometimento,Confiança,Ambiente Ético,Sugestões";
+            const rows = data.map(s => [
+                s.createdAt ? s.createdAt.toDate().toLocaleString('pt-BR') : '',
+                s.cordialidade_rh,
+                s.agilidade_rh,
+                s.clareza_rh,
+                s.comprometimento_rh,
+                s.confianca_rh,
+                s.ambiente_etico_rh,
+                `"${(s.sugestoes || '').replace(/"/g, '""')}"`
+            ].join(','));
+            
+            downloadFile(headers + "\n" + rows.join("\n"), "relatorio_servicos_rh.csv", "text/csv;charset=utf-8;");
+        }
+
+        function exportGeralToPDF(data) {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            doc.text("Relatório - Avaliação Geral do Ambiente", 14, 15);
+            doc.autoTable({
+                startY: 20,
+                head: [['Data', 'Segurança', 'Respeito', 'Regras', 'Assédio', 'Canal', 'NPS', 'Comentário']],
+                body: data.map(s => [
+                    s.createdAt ? s.createdAt.toDate().toLocaleDateString('pt-BR') : '',
+                    s.ambiente_seguro, s.respeito_colegas, s.regras_seguranca,
+                    s.assedio, s.canal_denuncias, s.nps_geral, (s.comentarios || '')
+                ]),
+                styles: { fontSize: 8 },
+                headStyles: { fillColor: [13, 71, 161] } // Azul Escuro
+            });
+            doc.save("relatorio_geral.pdf");
+        }
+
+        function exportServicosToPDF(data) {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            doc.text("Relatório - Avaliação dos Serviços RH", 14, 15);
+            doc.autoTable({
+                startY: 20,
+                head: [['Data', 'Cordialidade', 'Agilidade', 'Clareza', 'Comprom.', 'Confiança', 'Ética', 'Sugestão']],
+                body: data.map(s => [
+                    s.createdAt ? s.createdAt.toDate().toLocaleDateString('pt-BR') : '',
+                    s.cordialidade_rh, s.agilidade_rh, s.clareza_rh,
+                    s.comprometimento_rh, s.confianca_rh, s.ambiente_etico_rh, (s.sugestoes || '')
+                ]),
+                styles: { fontSize: 8 },
+                headStyles: { fillColor: [13, 71, 161] } // Azul Escuro
+            });
+            doc.save("relatorio_servicos_rh.pdf");
+        }
+
+        function downloadFile(content, fileName, mimeType) {
+            const link = document.createElement("a");
+            const blob = new Blob([content], { type: mimeType });
+            link.href = URL.createObjectURL(blob);
+            link.setAttribute("download", fileName);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
 
     </script>
